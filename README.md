@@ -1,12 +1,76 @@
-# React + Vite
+# 3D Portfolio Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A stunning 3D portfolio website built with React, Three.js, and Tailwind CSS.
 
-Currently, two official plugins are available:
+## Setup Instructions
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 1. Install Dependencies
+```bash
+npm install
+```
 
-## Expanding the ESLint configuration
+### 2. Configure EmailJS
+1. Sign up at [EmailJS](https://www.emailjs.com/)
+2. Create a new Email Service
+3. Create an email template
+4. Get your credentials:
+   - Public Key
+   - Service ID
+   - Template ID
+5. Update the credentials in `src/components/Contact.jsx`:
+   ```javascript
+   emailjs.init("YOUR_PUBLIC_KEY");
+   // ...
+   emailjs.sendForm(
+     "YOUR_SERVICE_ID",
+     "YOUR_TEMPLATE_ID",
+     formRef.current,
+     "YOUR_PUBLIC_KEY"
+   )
+   ```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 3. Add 3D Models
+1. Download the following 3D models:
+   - Computer model: Place `scene.gltf` and related files in `public/desktop_pc/`
+   - Earth model: Place `scene.gltf` and related files in `public/planet/`
+
+   You can find suitable models on [Sketchfab](https://sketchfab.com/):
+   - For computer: Search for "Gaming PC" or "Desktop Computer"
+   - For Earth: Search for "Earth Globe"
+
+2. Make sure to download models in GLTF format
+
+### 4. Add Images
+1. Tech Stack Icons (in `src/assets/tech/`):
+   - HTML, CSS, JavaScript icons
+   - React, Node.js, Three.js icons
+   - Other framework/tool icons
+
+2. Company Logos (in `src/assets/company/`):
+   - Add logos of companies you've worked with
+
+3. Project Screenshots (in `src/assets/`):
+   - Add screenshots or previews of your projects
+
+### 5. Run the Development Server
+```bash
+npm run dev
+```
+
+## Features
+- Interactive 3D elements
+- Responsive design
+- Modern UI/UX
+- Contact form with EmailJS
+- Animated sections
+- Project showcase
+- Skills visualization
+
+## Technologies Used
+- React.js
+- Three.js
+- Tailwind CSS
+- Framer Motion
+- EmailJS
+- React Three Fiber
+- React Three Drei
