@@ -7,9 +7,6 @@ import { EarthCanvas } from "./canvas";
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
 
-// Initialize EmailJS with your public key
-emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your actual public key
-
 const Contact = () => {
   const formRef = useRef();
   const [form, setForm] = useState({
@@ -29,11 +26,17 @@ const Contact = () => {
     setLoading(true);
 
     emailjs
-      .sendForm(
-        "YOUR_SERVICE_ID", // Replace with your EmailJS service ID
-        "YOUR_TEMPLATE_ID", // Replace with your EmailJS template ID
-        formRef.current,
-        "YOUR_PUBLIC_KEY" // Replace with your EmailJS public key
+      .send(
+        "service_id", // Replace with your EmailJS service ID
+        "template_id", // Replace with your EmailJS template ID
+        {
+          from_name: form.name,
+          to_name: "Adish Gujarathi",
+          from_email: form.email,
+          to_email: "adish.gujarathi10@gmail.com",
+          message: form.message,
+        },
+        "your_public_key" // Replace with your EmailJS public key
       )
       .then(
         () => {
@@ -48,7 +51,7 @@ const Contact = () => {
         },
         (error) => {
           setLoading(false);
-          console.error(error);
+          console.log(error);
           alert("Something went wrong. Please try again.");
         }
       );
@@ -63,6 +66,12 @@ const Contact = () => {
         <p className={styles.sectionSubText}>Get in touch</p>
         <h3 className={styles.sectionHeadText}>Contact.</h3>
 
+        <div className="mt-4 text-secondary text-[17px]">
+          <p>Location: Pune, Maharashtra</p>
+          <p>Phone: +91 9373824878</p>
+          <p>Email: adish.gujarathi10@gmail.com</p>
+        </div>
+
         <form
           ref={formRef}
           onSubmit={handleSubmit}
@@ -72,24 +81,22 @@ const Contact = () => {
             <span className="text-white font-medium mb-4">Your Name</span>
             <input
               type="text"
-              name="from_name"
+              name="name"
               value={form.name}
               onChange={handleChange}
               placeholder="What's your name?"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
-              required
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outlined-none border-none font-medium"
             />
           </label>
           <label className="flex flex-col">
             <span className="text-white font-medium mb-4">Your Email</span>
             <input
               type="email"
-              name="from_email"
+              name="email"
               value={form.email}
               onChange={handleChange}
               placeholder="What's your email?"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
-              required
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outlined-none border-none font-medium"
             />
           </label>
           <label className="flex flex-col">
@@ -100,8 +107,7 @@ const Contact = () => {
               value={form.message}
               onChange={handleChange}
               placeholder="What do you want to say?"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
-              required
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outlined-none border-none font-medium"
             />
           </label>
 
